@@ -52,6 +52,7 @@ dependencies {
     installCoroutine()
     installRoomDatabase()
     installUnitTest()
+    installLocation()
 
 
 }

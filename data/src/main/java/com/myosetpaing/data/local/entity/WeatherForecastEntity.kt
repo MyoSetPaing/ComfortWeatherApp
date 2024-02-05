@@ -1,19 +1,25 @@
-package com.myosetpaing.domain.model
+package com.myosetpaing.data.local.entity
 
-data class WeatherForecastDomain(
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
+class WeatherForecastEntity(
     val latitude: Double,
     val longitude: Double,
     val country: String,
+    @PrimaryKey(autoGenerate = false)
     val countryId: Int,
     val name: String,
     val population: Int,
     val timezone: Int,
     val cnt: Int,
-    val list: List<ForecastDataDomain>,
+    val list: ForecastDataList,
     val message: Double
 )
 
-data class ForecastDataDomain(
+
+data class ForecastDataEntity(
     val humidity: Int,
     val rain: Double,
     val speed: Double,
@@ -21,4 +27,7 @@ data class ForecastDataDomain(
     val icon: String,
     val main: String,
     val windSpeed: Double
+)
+data class ForecastDataList(
+    val list: List<ForecastDataEntity>,
 )

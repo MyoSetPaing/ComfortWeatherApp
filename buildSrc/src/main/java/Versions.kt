@@ -44,4 +44,7 @@ object Versions {
     const val truthTest= "1.1"
     const val mockkTest= "1.13.9"
 
+    //Location
+    const val location= "20.0.0"
+
 }

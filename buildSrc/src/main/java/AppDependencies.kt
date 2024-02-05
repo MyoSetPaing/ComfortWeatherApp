@@ -62,6 +62,8 @@ object AppDependencies {
     const val hiltTestCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hiltTest}"
     const val truth ="com.google.truth:truth:${Versions.truthTest}"
     const val mockk= "io.mockk:mockk:${Versions.mockkTest}"
+    //location
+    const val location= "com.google.android.gms:play-services-location:${Versions.location}"
 
     object AppLibraries {
 
@@ -105,8 +107,16 @@ object AppDependencies {
             add(truth)
             add(mockk)
         }
+        val installLocation= arrayListOf<String>().apply {
+            add(location)
+        }
     }
 
+
+}
+
+fun DependencyHandler.installLocation(){
+    implementation(AppDependencies.AppLibraries.installLocation)
 }
 
 fun DependencyHandler.installRetrofit() {
