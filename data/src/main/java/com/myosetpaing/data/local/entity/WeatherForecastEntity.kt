@@ -8,26 +8,22 @@ class WeatherForecastEntity(
     val latitude: Double,
     val longitude: Double,
     val country: String,
-    @PrimaryKey(autoGenerate = false)
-    val countryId: Int,
+    val countryId: String,
     val name: String,
-    val population: Int,
-    val timezone: Int,
-    val cnt: Int,
+    @PrimaryKey(autoGenerate = false)
+    val timezone: String,
     val list: ForecastDataList,
-    val message: Double
 )
 
 
 data class ForecastDataEntity(
+    val date: String,
     val humidity: Int,
-    val rain: Double,
-    val speed: Double,
-    val description: String,
-    val icon: String,
-    val main: String,
-    val windSpeed: Double
-)
+    val wind_mph: Double,
+    val maxtemp_c: Double,
+    val icon:String
+
+    )
 data class ForecastDataList(
     val list: List<ForecastDataEntity>,
 )

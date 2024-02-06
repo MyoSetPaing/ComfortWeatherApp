@@ -5,21 +5,17 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class CurrentWeatherEntity(
-    val latitude: Double,
-    val longitude: Double,
+    val latitude: Double?,
+    val longitude: Double?,
     @PrimaryKey(autoGenerate = false)
-    val id: Int,
-    val humidity: Int,
-    val temp: Double,
-    val tempMax: Double,
-    val tempMin: Double,
-    val name: String,
-    val rain: Double? = 1.0,
-    val country: String,
-    val timezone: Int,
-    val visibility: Int,
-    val description: String,
-    val icon: String,
-    val main: String,
-    val windSpeed: Double
+    val id: String,
+    val humidity: Int?,
+    val temp: Double?,
+    val name: String?,
+    val country: String?= null,
+    val timezone: String?,
+    val description: String?,
+    val icon: String?,
+    val windSpeed: Double?,
+    val pressure:Double?
 )

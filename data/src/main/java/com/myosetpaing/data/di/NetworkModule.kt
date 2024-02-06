@@ -2,6 +2,8 @@ package com.myosetpaing.data.di
 
 import android.app.Application
 import androidx.room.Room
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.myosetpaing.data.BuildConfig
 import com.myosetpaing.data.Constants.BASE_URL
 import com.myosetpaing.data.internet.InternetConnectionCheckerImpl
@@ -50,7 +52,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideApiInstance(okHttpClient: OkHttpClient):ComfortWeatherApi {
+    fun provideApiInstance(okHttpClient: OkHttpClient): ComfortWeatherApi {
         return Retrofit
             .Builder()
             .baseUrl(BASE_URL)
@@ -78,6 +80,11 @@ object NetworkModule {
     @Singleton
     fun provideInternetConnectionChecker(
         application: Application
-    ): InternetConnectionChecker  = InternetConnectionCheckerImpl(application)
+    ): InternetConnectionChecker = InternetConnectionCheckerImpl(application)
 
-  }
+    @Provides
+    @Singleton
+    fun provideFusedLocationProviderClient(app: Application): FusedLocationProviderClient {
+        return LocationServices.getFusedLocationProviderClient(app)
+    }
+}

@@ -19,20 +19,16 @@ class CurrentWeatherUseCaseImplTest {
 
         latitude = 10.99,
         longitude = 44.34,
-        id = 3163858,
+        id = "3163858",
         humidity = 64,
         temp = 298.48,
-        tempMax = 300.05,
-        tempMin = 297.56,
+
         country = "IT",
         name = "Zocca",
-        rain = 3.16,
-        timezone = 32424,
-        visibility = 10000,
+        timezone = "32424",
         windSpeed = 0.62,
         description = "clear",
         icon = "10d",
-        main = "clear"
 
     )
     private lateinit var currentWeatherRepository: CurrentWeatherRepository

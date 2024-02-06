@@ -3,58 +3,47 @@ package com.myosetpaing.data.mapper
 import com.myosetpaing.data.local.entity.ForecastDataEntity
 import com.myosetpaing.data.local.entity.ForecastDataList
 import com.myosetpaing.data.local.entity.WeatherForecastEntity
-import com.myosetpaing.data.remote.dto.ForecastData
 import com.myosetpaing.data.remote.dto.ForecastWeatherDto
+import com.myosetpaing.data.remote.dto.Forecastday
 import com.myosetpaing.domain.model.ForecastDataDomain
 import com.myosetpaing.domain.model.WeatherForecastDomain
 
 fun ForecastWeatherDto.toWeatherForecastEntity(): WeatherForecastEntity {
     return WeatherForecastEntity(
-        cnt = cnt,
-        country = city.country,
-        countryId = city.id,
-        latitude = city.coord.lat,
-        longitude = city.coord.lon,
-        list = ForecastDataList(list.map {
-            it.toForecastDataEntity()
-        }),
-        message = message,
-        name = city.name,
-        population = city.population,
-        timezone = city.timezone
-
-
+        country = location.country,
+        countryId = location.tz_id,
+        latitude = location.lat,
+        longitude = location.lon,
+        list = ForecastDataList(forecast.forecastday.map { it.toForecastDataEntity() }),
+        name = location.name,
+        timezone = location.localtime
     )
 }
 
 
 fun WeatherForecastEntity.toWeatherForecastDomain(): WeatherForecastDomain {
     return WeatherForecastDomain(
-        cnt = cnt,
         country = country,
         countryId = countryId,
         latitude = latitude,
         longitude = longitude,
         list = list.list.map { it.toForecastDataDomain() },
-        message = message,
         name = name,
-        population = population,
         timezone = timezone
 
 
     )
 }
 
-fun ForecastData.toForecastDataEntity(
+fun Forecastday.toForecastDataEntity(
 ): ForecastDataEntity {
     return ForecastDataEntity(
-        humidity = humidity,
-        rain = rain,
-        speed = speed,
-        description = weather[0].description,
-        icon = weather[0].icon,
-        main = weather[0].main,
-        windSpeed = speed
+        humidity = day.avghumidity,
+        date = date,
+        maxtemp_c = day.maxtemp_c,
+        wind_mph = day.maxwind_mph,
+        icon = day.condition.icon
+
     )
 }
 
@@ -62,11 +51,9 @@ fun ForecastDataEntity.toForecastDataDomain(
 ): ForecastDataDomain {
     return ForecastDataDomain(
         humidity = humidity,
-        rain = rain,
-        speed = speed,
-        description = description,
-        icon = icon,
-        main = main,
-        windSpeed = speed
+        date = date,
+        maxtemp_c = maxtemp_c,
+        wind_mph = wind_mph,
+        icon = icon
     )
 }

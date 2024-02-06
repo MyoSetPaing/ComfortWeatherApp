@@ -4,21 +4,16 @@ data class WeatherForecastDomain(
     val latitude: Double,
     val longitude: Double,
     val country: String,
-    val countryId: Int,
+    val countryId: String,
     val name: String,
-    val population: Int,
-    val timezone: Int,
-    val cnt: Int,
+    val timezone: String,
     val list: List<ForecastDataDomain>,
-    val message: Double
 )
 
 data class ForecastDataDomain(
+    val date: String,
     val humidity: Int,
-    val rain: Double,
-    val speed: Double,
-    val description: String,
-    val icon: String,
-    val main: String,
-    val windSpeed: Double
+    val wind_mph: Double,
+    val maxtemp_c: Double,
+    val icon: String
 )

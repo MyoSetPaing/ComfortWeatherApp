@@ -6,21 +6,18 @@ import com.myosetpaing.domain.model.CurrentWeatherDomain
 
 fun CurrentWeatherDto.toCurrentWeatherEntity(): CurrentWeatherEntity {
     return CurrentWeatherEntity(
-        latitude = coord.lat,
-        longitude = coord.lon,
-        country = sys.country,
-        description = weather[0].description,
-        humidity = main.humidity,
-        icon = weather[0].icon,
-        id = id,
-        main = weather[0].main,
-        name = name,
-        temp = main.temp,
-        tempMax = main.temp_max,
-        tempMin = main.temp_min,
-        timezone = timezone,
-        visibility = visibility,
-        windSpeed = wind.speed
+        latitude = location.lat,
+        longitude = location.lon,
+        country = location.country,
+        description = current.condition.text,
+        humidity = current.humidity,
+        icon = current.condition.icon,
+        id = location.tz_id,
+        name = location.name,
+        temp = current.temp_c,
+        timezone = location.localtime,
+        windSpeed = current.wind_mph,
+        pressure = current.pressure_in
     )
 }
 
@@ -33,13 +30,10 @@ fun CurrentWeatherEntity.toCurrentWeatherDomain(): CurrentWeatherDomain {
         humidity = humidity,
         icon = icon,
         id = id,
-        main = main,
         name = name,
         temp = temp,
-        tempMax = tempMax,
-        tempMin = tempMin,
         timezone = timezone,
-        visibility = visibility,
-        windSpeed = windSpeed
+        windSpeed = windSpeed,
+        pressure = pressure
     )
 }

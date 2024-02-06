@@ -30,15 +30,14 @@ class CurrentWeatherRepositoryImpl @Inject constructor(
 
         if (internetConnectionChecker.isNetworkAvailable()) {
             val response = safeApiCall(coroutineDispatcher) {
-                weatherApi.getCurrentWeather(lat, lon)
+                weatherApi.getCurrentWeather(q="${lat},${lon}")
             }
             if (response is Result.Success) {
                 weatherAppDatabase.weatherDao()
                     .upsertCurrentWeather(response.successData.toCurrentWeatherEntity())
 
             }
-            return weatherAppDatabase.weatherDao().getCurrentWeatherLocal().map {
-                Result.Success(it.toCurrentWeatherDomain())
+            return weatherAppDatabase.weatherDao().getCurrentWeatherLocal().map {value-> Result.Success(value.toCurrentWeatherDomain())
             }
         } else {
             return weatherAppDatabase.weatherDao().getCurrentWeatherLocal().map {

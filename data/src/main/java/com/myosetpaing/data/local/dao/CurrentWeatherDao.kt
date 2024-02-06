@@ -23,4 +23,6 @@ interface CurrentWeatherDao {
     @Query("SELECT * FROM WeatherForecastEntity")
     fun getWeatherForecastLocal(): Flow<WeatherForecastEntity>
 
+
+
 }

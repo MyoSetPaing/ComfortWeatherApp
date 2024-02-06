@@ -1,6 +1,6 @@
 package com.myosetpaing.domain
 
-import com.myosetpaing.domain.model.ForecastData
+import com.myosetpaing.domain.model.ForecastDataDomain
 import com.myosetpaing.domain.model.Result
 import com.myosetpaing.domain.model.WeatherForecastDomain
 
@@ -18,7 +18,7 @@ import org.junit.Test
 class GetWeatherForecastUseCaseTest {
 
 
-    val data1 = ForecastData(
+    val data1 = ForecastDataDomain(
 
         humidity = 1,
         rain = 1.0,
@@ -29,7 +29,7 @@ class GetWeatherForecastUseCaseTest {
         windSpeed = 1.0
 
     )
-    val data2 = ForecastData(
+    val data2 = ForecastDataDomain(
 
         humidity = 1,
         rain = 1.0,

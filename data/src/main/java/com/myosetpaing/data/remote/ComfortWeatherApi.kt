@@ -7,18 +7,16 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ComfortWeatherApi {
-    @GET("weather")
+    @GET("current.json")
     suspend fun getCurrentWeather(
-        @Query("lat") lat: Double,
-        @Query("lon") lon: Double,
-        @Query("appid") apiKey: String = API_KEY
+        @Query("q") q: String,
+        @Query("key") apiKey: String = API_KEY
     ): CurrentWeatherDto
 
-    @GET("forecast/daily")
+    @GET("forecast.json")
     suspend fun getWeatherForecast(
-        @Query("lat") lat: Double,
-        @Query("lon") lon: Double,
-        @Query("appid") apiKey: String = API_KEY,
-        @Query("cnt") cnt: Int
+        @Query("days") days: Int,
+        @Query("q") q: String,
+        @Query("key") apiKey: String = API_KEY,
     ): ForecastWeatherDto
 }

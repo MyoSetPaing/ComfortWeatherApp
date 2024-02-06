@@ -2,8 +2,6 @@ package com.myosetpaing.data.remote.repository
 
 import com.myosetpaing.data.di.IoDispatcher
 import com.myosetpaing.data.local.ComfortWeatherDatabase
-import com.myosetpaing.data.mapper.toCurrentWeatherDomain
-import com.myosetpaing.data.mapper.toCurrentWeatherEntity
 import com.myosetpaing.data.mapper.toWeatherForecastDomain
 import com.myosetpaing.data.mapper.toWeatherForecastEntity
 import com.myosetpaing.data.remote.ComfortWeatherApi
@@ -32,7 +30,7 @@ class WeatherForecastRepositoryImpl @Inject constructor(
 
         if (internetConnectionChecker.isNetworkAvailable()) {
             val response = safeApiCall(coroutineDispatcher) {
-                weatherApi.getWeatherForecast(lat, lon, cnt = cnt)
+                weatherApi.getWeatherForecast(q = "$lat,$lon", days = cnt)
             }
             if (response is Result.Success) {
                 weatherAppDatabase.weatherDao()
